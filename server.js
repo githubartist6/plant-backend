@@ -46,7 +46,7 @@ app.use("/api/data", newProductsRoute);
 app.use("/api/data", plantCategoriesRoute);
 app.use("/api/data", featuresRoute);
 
-// let's define admin route
+//  let's define admin route
 app.use("/api/admin", adminRoute);
 
 app.use(errorMiddleware);
