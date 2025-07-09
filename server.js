@@ -27,7 +27,7 @@ const adminRoute = require("./router/admin-router");
 
 // let's tackle cors
 const corsOptions = {
-    origin: "process.env.CLIENT_URL",
+    origin: process.env.CLIENT_URL,
     methods: "GET, POST, PUT, DELETE, PATCH, HEAD",
     credentials: true,
 };
