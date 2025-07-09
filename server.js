@@ -27,7 +27,7 @@ const adminRoute = require("./router/admin-router");
 
 // let's tackle cors
 const corsOptions = {
-    origin: "https://react-plant.netlify.app",
+    origin: "http://localhost:5173",
     methods: "GET, POST, PUT, DELETE, PATCH, HEAD",
     credentials: true,
 };
