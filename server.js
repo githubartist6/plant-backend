@@ -4,12 +4,11 @@ const cors = require("cors");
 const app = express();
 const connectDb = require("./utls/db");
 const errorMiddleware = require("./middlewares/error-middleware");
-
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5100;
 
 // ✅ CORS Configuration
 const corsOptions = {
-    origin: process.env.CLIENT_URL || "https://react-plant.netlify.app", // fallback to Netlify URL
+    origin: process.env.CLIENT_URL || "https://react-plant.netlify.app",
     methods: "GET, POST, PUT, DELETE, PATCH, HEAD",
     credentials: true,
 };
@@ -37,14 +36,16 @@ app.use("/api/auth", authRoute);
 app.use("/api/form", contactRoute);
 app.use("/api/order", orderRoute);
 app.use("/api/form", addressRoute);
-app.use("/api/data/multipal", multipaldataRoute);
-app.use("/api/data/hero", plantheroRoute);
-app.use("/api/data/categories", categoriesRoute);
-app.use("/api/data/shopcategories", shopcategoriesRoute);
-app.use("/api/data/newproducts", newProductsRoute);
-app.use("/api/data/plantcategories", plantCategoriesRoute);
-app.use("/api/data/features", featuresRoute);
+app.use("/api/data", multipaldataRoute);
+app.use("/api/data", plantheroRoute);
+app.use("/api/data", categoriesRoute);
+app.use("/api/data", shopcategoriesRoute);
+app.use("/api/data", newProductsRoute);
+app.use("/api/data", plantCategoriesRoute);
+app.use("/api/data", featuresRoute);
+//  let's define admin route
 app.use("/api/admin", adminRoute);
+
 
 // ✅ Error Middleware
 app.use(errorMiddleware);
