@@ -36,7 +36,7 @@ app.use("/api/auth", authRoute);
 app.use("/api/form", contactRoute);
 app.use("/api/order", orderRoute);
 app.use("/api/form", addressRoute);
-app.use("/api/data", multipaldataRoute);
+app.use("/api/data/multipaldata", multipaldataRoute);
 app.use("/api/data", plantheroRoute);
 app.use("/api/data", categoriesRoute);
 app.use("/api/data", shopcategoriesRoute);
