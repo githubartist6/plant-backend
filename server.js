@@ -6,12 +6,25 @@ const connectDb = require("./utls/db");
 const errorMiddleware = require("./middlewares/error-middleware");
 const PORT = process.env.PORT || 5100;
 
-// ✅ CORS Configuration
+// ✅ Multiple Origins for CORS
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://serene-scone-b5bfbc.netlify.app"
+];
+
 const corsOptions = {
-    origin: process.env.CLIENT_URL || "https://react-plant.netlify.app",
-    methods: "GET, POST, PUT, DELETE, PATCH, HEAD",
-    credentials: true,
+  origin: function (origin, callback) {
+    // allow requests with no origin (like mobile apps or curl)
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("CORS not allowed for this origin"));
+    }
+  },
+  methods: "GET, POST, PUT, DELETE, PATCH, HEAD",
+  credentials: true,
 };
+
 app.use(cors(corsOptions));
 
 // ✅ Middleware
@@ -43,16 +56,14 @@ app.use("/api/data", shopcategoriesRoute);
 app.use("/api/data", newProductsRoute);
 app.use("/api/data", plantCategoriesRoute);
 app.use("/api/data", featuresRoute);
-//  let's define admin route
 app.use("/api/admin", adminRoute);
-
 
 // ✅ Error Middleware
 app.use(errorMiddleware);
 
 // ✅ DB Connection and Start Server
 connectDb().then(() => {
-    app.listen(PORT, () => {
-        console.log(`✅ Server is running at http://localhost:${PORT}`);
-    });
+  app.listen(PORT, () => {
+    console.log(`✅ Server is running at http://localhost:${PORT}`);
+  });
 });
